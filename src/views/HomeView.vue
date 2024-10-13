@@ -3,7 +3,7 @@ import MainPage from '../components/MainPage.vue'
 </script>
 
 <template>
-  <main class="h-full w-full flex justify-center items-center">
+  <div class="flex flex-col w-full h-full">
     <MainPage />
-  </main>
+  </div>
 </template>
