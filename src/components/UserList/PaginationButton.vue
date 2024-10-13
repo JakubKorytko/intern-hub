@@ -1,27 +1,28 @@
 <script setup lang="ts">
-import { defineProps } from 'vue';
+import { defineProps } from 'vue'
 
 interface Props {
-  text: string;
-  active: boolean;
-  selectable: boolean;
+  text: string
+  active: boolean
+  selectable: boolean
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  text: "",
+  text: '',
   active: false,
   selectable: true,
-});
+})
 
-const {text, selectable, active} = props;
+const { text, selectable, active } = props
 </script>
 
 <template>
-  <button :class="{selectable, active}" class="w-7 h-7 p-0">{{text}}</button>
+  <button :class="{ selectable, active }" class="w-7 h-7 p-0">
+    {{ text }}
+  </button>
 </template>
 
 <style scoped>
-
 .selectable {
   color: #459672;
 }
@@ -50,5 +51,4 @@ button {
   font-weight: 550;
   height: 1.95rem;
 }
-
 </style>

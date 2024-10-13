@@ -1,6 +1,10 @@
 <template>
   <div class="h-12 w-full md:w-96">
-    <input type="text" placeholder="Search for users..." class="h-full md:h-4/6 search-bar float-left"/>
+    <input
+      type="text"
+      placeholder="Search for users..."
+      class="h-full md:h-4/6 search-bar float-left"
+    />
     <button type="submit" class="search-bar-button h-full md:h-4/6 float-left">
       <i class="fa fa-search"></i>
     </button>
@@ -8,7 +12,8 @@
 </template>
 
 <style scoped>
-.search-bar, .search-bar-button {
+.search-bar,
+.search-bar-button {
   background-color: #f8f9fa;
   color: #747888;
 }
@@ -23,7 +28,7 @@
 }
 
 .search-bar::after {
-  content: "";
+  content: '';
   clear: both;
 }
 </style>

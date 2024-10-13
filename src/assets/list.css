@@ -1,70 +1,70 @@
 .interns-list th,
 .interns-list td {
-    padding: 0.8rem 0;
-    font-size: 0.8rem;
+  padding: 0.8rem 0;
+  font-size: 0.8rem;
 }
 
 .interns-list th:nth-child(2),
 .interns-list td:nth-child(2) {
-    text-align: left;
+  text-align: left;
 }
 
 .interns-list th:nth-child(1),
 .interns-list td:nth-child(1) {
-    width: calc(100% / 11);
-    padding-left: 1rem;
+  width: calc(100% / 11);
+  padding-left: 1rem;
 }
 
 .interns-list th:nth-child(3),
 .interns-list td:nth-child(3) {
-    width: calc(100% / 6);
-    text-align: center;
+  width: calc(100% / 6);
+  text-align: center;
 }
 
 .interns-list img {
-    max-height: 2.2rem;
-    border-radius: 10rem;
+  max-height: 2.2rem;
+  border-radius: 10rem;
 }
 
 .interns-list tbody tr:nth-child(odd) {
-    background-color: #f5f7f9;
+  background-color: #f5f7f9;
 }
 
-.interns-list th:nth-child(n+2) {
-    padding-bottom: 0.1rem;
+.interns-list th:nth-child(n + 2) {
+  padding-bottom: 0.1rem;
 }
 
 @media (max-width: 768px) {
-    .interns-list th,
-    .interns-list td {
-        padding: 1.8rem 0;
-        font-size: 0.9rem;
-    }
+  .interns-list th,
+  .interns-list td {
+    padding: 1.8rem 0;
+    font-size: 0.9rem;
+  }
 
-    .interns-list th:nth-child(1),
-    .interns-list td:nth-child(1) {
-        width: calc(100% / 7);
-        padding-left: 0.4rem;
-    }
+  .interns-list th:nth-child(1),
+  .interns-list td:nth-child(1) {
+    width: calc(100% / 7);
+    padding-left: 0.4rem;
+  }
 
-    .interns-list td:nth-child(3) button {
-        font-size: 1.5rem;
-        padding: 0 0.5rem;
-    }
+  .interns-list td:nth-child(3) button {
+    font-size: 1.5rem;
+    padding: 0 0.5rem;
+  }
 
-    .interns-list th:nth-child(2),
-    .interns-list td:nth-child(2) {
-        padding-left: 0.6rem;
-    }
+  .interns-list th:nth-child(2),
+  .interns-list td:nth-child(2) {
+    padding-left: 0.6rem;
+  }
 }
 
 @media (max-width: 640px) {
-    .interns-list th:nth-child(3),
-    .interns-list td:nth-child(3) {
-        width: calc(100% / 3);
-    }
+  .interns-list th:nth-child(3),
+  .interns-list td:nth-child(3) {
+    width: calc(100% / 3);
+  }
 
-    .interns-list td:nth-child(3) button {
-        padding: 0 0.7rem;
-    }
+  .interns-list td:nth-child(3) button {
+    padding: 0 0.7rem;
+  }
 }

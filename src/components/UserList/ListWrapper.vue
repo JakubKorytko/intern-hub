@@ -6,7 +6,9 @@ import ListComponent from '@/components/UserList/ListComponent.vue'
 
 <template>
   <div class="flex flex-col list-wrapper">
-    <div class="border-b-2 basis-2/12 justify-between md:items-center flex flex-col md:flex-row">
+    <div
+      class="border-b-2 basis-2/12 justify-between md:items-center flex flex-col md:flex-row"
+    >
       <search-bar />
       <add-user-button />
     </div>
@@ -19,6 +21,6 @@ import ListComponent from '@/components/UserList/ListComponent.vue'
 <style scoped>
 .list-wrapper {
   width: 97%;
-  height: 95%
+  height: 95%;
 }
 </style>

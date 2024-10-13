@@ -5,10 +5,14 @@ import ListWrapper from '@/components/UserList/ListWrapper.vue'
 
 <template>
   <div class="flex flex-col w-full h-full">
-    <div class="list-wrapper-bg justify-center flex items-center overflow-hidden bg-white">
+    <div
+      class="list-wrapper-bg justify-center flex items-center overflow-hidden bg-white"
+    >
       <list-wrapper />
     </div>
-    <div class="pagination-block-wrapper flex items-center justify-center md:justify-normal">
+    <div
+      class="pagination-block-wrapper flex items-center justify-center md:justify-normal"
+    >
       <pagination-block />
     </div>
   </div>
