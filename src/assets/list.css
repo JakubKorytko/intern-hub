@@ -1,0 +1,29 @@
+.interns-list th,
+.interns-list td {
+    padding: 1.5rem 0;
+}
+
+.interns-list th:nth-child(2),
+.interns-list td:nth-child(2) {
+    text-align: left;
+}
+
+.interns-list th:nth-child(1),
+.interns-list td:nth-child(1),
+.interns-list th:nth-child(3),
+.interns-list td:nth-child(3) {
+    width: calc( 100% / 6 )
+}
+
+.interns-list th:nth-child(2),
+.interns-list td:nth-child(2) {
+    width: calc( 100% / 3 * 2 )
+}
+
+.interns-list td:nth-child(3) {
+    text-align: center;
+}
+
+.interns-list img {
+    max-height: 4rem;
+}
