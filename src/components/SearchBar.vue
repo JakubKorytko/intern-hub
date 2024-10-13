@@ -1,7 +1,9 @@
 <template>
-  <div class="h-12 w-96">
-    <input type="text" placeholder="Search for users..." class="h-4/6 search-bar"/>
-    <button type="submit" class="search-bar-button h-4/6"><i class="fa fa-search"></i></button>
+  <div class="h-12 w-full md:w-96">
+    <input type="text" placeholder="Search for users..." class="h-full md:h-4/6 search-bar"/>
+    <button type="submit" class="search-bar-button h-full md:h-4/6">
+      <i class="fa fa-search"></i>
+    </button>
   </div>
 </template>
 

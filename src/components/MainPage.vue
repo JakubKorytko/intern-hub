@@ -11,7 +11,7 @@ import ListWrapper from '@/components/ListWrapper.vue'
     <div class="basis-10/12 list-wrapper-bg justify-center flex items-center" style="max-height: 83.333333%">
       <list-wrapper />
     </div>
-    <div class="basis-1/12 flex items-center">
+    <div class="basis-1/12 flex items-center justify-center md:justify-normal">
       <pagination-block />
     </div>
   </div>
