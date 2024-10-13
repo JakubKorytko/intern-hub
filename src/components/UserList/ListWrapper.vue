@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import SearchBar from '@/components/SearchBar.vue'
-import AddUserButton from '@/components/AddUserButton.vue'
-import ListComponent from '@/components/ListComponent.vue'
+import SearchBar from '@/components/UserList/SearchBar.vue'
+import AddUserButton from '@/components/UserList/AddUserButton.vue'
+import ListComponent from '@/components/UserList/ListComponent.vue'
 </script>
 
 <template>

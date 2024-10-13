@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import ListRow from "@/components/ListRow.vue"
+import ListRow from "@/components/UserList/ListRow.vue"
 
 const imgUrl = "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
 

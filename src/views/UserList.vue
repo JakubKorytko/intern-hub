@@ -1,15 +1,17 @@
 <script setup lang="ts">
-import PaginationBlock from '@/components/PaginationBlock.vue'
-import ListWrapper from '@/components/ListWrapper.vue'
+import PaginationBlock from '@/components/UserList/PaginationBlock.vue'
+import ListWrapper from '@/components/UserList/ListWrapper.vue'
 </script>
 
 <template>
+  <div class="flex flex-col w-full h-full">
     <div class="list-wrapper-bg justify-center flex items-center overflow-hidden bg-white">
       <list-wrapper />
     </div>
     <div class="pagination-block-wrapper flex items-center justify-center md:justify-normal">
       <pagination-block />
     </div>
+  </div>
 </template>
 
 <style scoped>
