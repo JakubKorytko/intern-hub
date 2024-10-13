@@ -2,7 +2,7 @@
 import PaginationButton from '@/components/PaginationButton.vue'
 
 const currentPage = 1;
-const pages = [1,2,3,4,5,6,7,8,9]
+const pages = [1,2,3,4,5,6,7,8,9];
 </script>
 
 <template>

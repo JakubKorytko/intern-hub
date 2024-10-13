@@ -17,7 +17,7 @@ const {text, selectable, active} = props;
 </script>
 
 <template>
-  <button :class="{selectable, active}" class="w-7 h-7">{{text}}</button>
+  <button :class="{selectable, active}" class="w-7 h-7 p-0">{{text}}</button>
 </template>
 
 <style scoped>
@@ -46,10 +46,9 @@ button:last-child {
 button {
   background-color: #fefefe;
   width: 1.95rem;
-  box-shadow: inset 0px 0px 1px 1px rgba(220, 220, 222, 0.7);
+  box-shadow: inset 0 0 1px 1px rgba(220, 220, 222, 0.7);
   font-weight: 550;
   height: 1.95rem;
-  padding: 0;
 }
 
 </style>

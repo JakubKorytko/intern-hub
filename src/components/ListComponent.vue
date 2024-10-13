@@ -18,7 +18,6 @@ const Interns: Intern[] = new Array(10).fill({
   surname: "Kowalski",
   pfp: imgUrl
 });
-
 </script>
 
 <template>
@@ -31,29 +30,9 @@ const Interns: Intern[] = new Array(10).fill({
       </tr>
     </thead>
     <tbody>
-    <template v-for="Intern in Interns" :key="Intern.id">
-      <list-row :image-url="Intern.pfp" :name="Intern.firstname.concat(' ', Intern.surname)" />
-    </template>
+      <template v-for="Intern in Interns" :key="Intern.id">
+        <list-row :image-url="Intern.pfp" :name="Intern.firstname.concat(' ', Intern.surname)" />
+      </template>
     </tbody>
   </table>
 </template>
-
-<!--<style scoped>-->
-
-<!--th, td {-->
-<!--  padding: 1.5rem 0;-->
-<!--}-->
-
-<!--th:nth-child(2), td:nth-child(2) {-->
-<!--  text-align: left;-->
-<!--}-->
-
-<!--th:nth-child(1), td:nth-child(1), th:nth-child(3), td:nth-child(3) {-->
-<!--  width: calc( 100% / 6 )-->
-<!--}-->
-
-<!--th:nth-child(2), td:nth-child(2) {-->
-<!--  width: calc( 100% / 3 * 2 )-->
-<!--}-->
-
-<!--</style>-->

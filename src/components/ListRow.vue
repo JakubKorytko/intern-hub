@@ -20,8 +20,12 @@ const {imageUrl, name} = props;
   </td>
   <td class="text-gray-400">
     <div class="flex justify-center intern-icons">
-    <button><i class="fa fa-edit"></i></button>
-    <button><i class="fa fa-trash"></i></button>
+    <button>
+      <i class="fa fa-edit"></i>
+    </button>
+    <button>
+      <i class="fa fa-trash"></i>
+    </button>
     </div>
   </td>
 </tr>
