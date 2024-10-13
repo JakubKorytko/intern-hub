@@ -11,7 +11,7 @@ const routeHeaderName = routeName ? routeName.toString() : ''
 
 const routeHeader: IRouteHeader = {
   home: 'User List',
-  add: 'Add User',
+  addUser: 'Add User',
 }
 </script>
 
