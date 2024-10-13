@@ -10,7 +10,7 @@ import ListComponent from '@/components/ListComponent.vue'
       <search-bar />
       <add-user-button />
     </div>
-    <div class="bg-amber-950 basis-10/12 overflow-y-scroll">
+    <div class="basis-10/12 overflow-y-scroll">
       <list-component />
     </div>
   </div>

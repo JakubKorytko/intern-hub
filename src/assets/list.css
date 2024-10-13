@@ -1,6 +1,7 @@
 .interns-list th,
 .interns-list td {
-    padding: 1.5rem 0;
+    padding: 0.8rem 0;
+    font-size: 0.8rem;
 }
 
 .interns-list th:nth-child(2),
@@ -8,16 +9,17 @@
     text-align: left;
 }
 
+
 .interns-list th:nth-child(1),
-.interns-list td:nth-child(1),
+.interns-list td:nth-child(1) {
+    width: calc( 100% / 11 )
+}
+
+
+
 .interns-list th:nth-child(3),
 .interns-list td:nth-child(3) {
     width: calc( 100% / 6 )
-}
-
-.interns-list th:nth-child(2),
-.interns-list td:nth-child(2) {
-    width: calc( 100% / 3 * 2 )
 }
 
 .interns-list td:nth-child(3) {
@@ -25,5 +27,21 @@
 }
 
 .interns-list img {
-    max-height: 4rem;
+    max-height: 2.2rem;
+}
+
+.interns-list tbody tr:nth-child(odd) {
+    background-color: #f5f7f9;
+}
+
+.interns-list td:nth-child(1) {
+    padding-left: 1rem;
+}
+
+.interns-list td:nth-child(1) img {
+    border-radius: 10rem;
+}
+
+.interns-list th:nth-child(n+2) {
+    padding-bottom: 0.1rem;
 }

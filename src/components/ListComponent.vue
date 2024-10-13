@@ -25,13 +25,15 @@ const Interns: Intern[] = new Array(10).fill({
   <table class="w-full interns-list">
     <thead>
       <tr>
-        <th></th>
+        <th class="invisible select-none">Table</th>
         <th>Full name</th>
         <th>Action</th>
       </tr>
     </thead>
-    <tbody v-for="Intern in Interns" :key="Intern.id">
-      <list-row :image-url="Intern.pfp" :name="Intern.firstname + Intern.surname" />
+    <tbody>
+    <template v-for="Intern in Interns" :key="Intern.id">
+      <list-row :image-url="Intern.pfp" :name="Intern.firstname.concat(' ', Intern.surname)" />
+    </template>
     </tbody>
   </table>
 </template>
