@@ -6,7 +6,7 @@ import ListComponent from '@/components/ListComponent.vue'
 
 <template>
   <div class="flex flex-col w-full h-full">
-    <div class="bg-pink-600 basis-2/12 justify-between items-center flex flex-row">
+    <div class="bg-pink-600 basis-2/12 justify-between md:items-center flex flex-col md:flex-row">
       <search-bar />
       <add-user-button />
     </div>
