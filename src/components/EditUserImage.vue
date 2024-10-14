@@ -6,10 +6,20 @@ const imgUrl =
 <template>
   <div class="flex flex-col bg-green-400" style="width: 95%; height: 95%">
     <div class="basis-10/12 bg-blue-700 flex justify-center items-center">
-      <img :src="imgUrl" class="w-2/6 rounded-full" />
+      <img alt="profile picture" :src="imgUrl" class="w-2/6 rounded-full" />
     </div>
     <div class="basis-2/12 bg-orange-400 flex justify-center items-center">
-      <button class="bg-white w-11/12 h-4/6">Change Photo</button>
+      <button class="change-photo-button bg-white w-11/12 h-4/6 rounded-md">
+        <i class="fa fa-camera" aria-hidden="true"></i>
+        Change Photo
+      </button>
     </div>
   </div>
 </template>
+
+<style scoped>
+.change-photo-button {
+  color: #68737c;
+  border: 1px solid #ced5da;
+}
+</style>
