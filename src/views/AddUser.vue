@@ -5,10 +5,10 @@ import EditUserImage from '@/components/EditUserImage.vue'
 
 <template>
   <div class="h-full md:h-3/5 w-100 flex flex-col-reverse md:flex-row bg-amber-950 justify-between">
-    <div class="bg-green-400 edit-user-data-wrapper">
+    <div class="bg-green-400 edit-user-data-wrapper flex justify-center items-center">
       <edit-user-data />
     </div>
-    <div class="basis-5/12 md:basis-4/12 bg-yellow-400">
+    <div class="basis-5/12 md:basis-4/12 bg-yellow-400 flex justify-center items-center">
       <edit-user-image />
     </div>
   </div>
