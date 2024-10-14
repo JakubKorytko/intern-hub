@@ -4,11 +4,11 @@ import EditUserImage from '@/components/EditUserImage.vue'
 </script>
 
 <template>
-  <div class="h-full md:h-3/5 w-100 flex flex-col-reverse md:flex-row bg-amber-950 justify-between">
-    <div class="bg-green-400 edit-user-data-wrapper flex justify-center items-center">
+  <div class="h-full md:h-3/5 w-100 flex flex-col-reverse md:flex-row justify-between">
+    <div class="bg-white edit-user-data-wrapper flex justify-center items-center rounded-md">
       <edit-user-data />
     </div>
-    <div class="basis-5/12 md:basis-4/12 bg-yellow-400 flex justify-center items-center">
+    <div class="basis-5/12 edit-image-wrapper md:basis-4/12 flex justify-center items-center bg-white rounded-md">
       <edit-user-image />
     </div>
   </div>
@@ -21,7 +21,12 @@ import EditUserImage from '@/components/EditUserImage.vue'
   }
 }
 
+.edit-image-wrapper {
+  box-shadow: 0 0 6px 6px rgba(234, 234, 237, 1);
+}
+
 .edit-user-data-wrapper {
   flex-basis: 63.666667%;
+  box-shadow: 0 0 6px 6px rgba(234, 234, 237, 1);
 }
 </style>
