@@ -1,3 +1,36 @@
+<script setup lang="ts">
+import { ref, defineProps, defineEmits, watch } from 'vue';
+
+interface IProps {
+  firstname: string;
+  surname: string;
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  firstname: null,
+  surname: null,
+})
+
+const emit = defineEmits<{
+  (e: 'update:name', firstname: string): void;
+  (e: 'update:surname', surname: string): void;
+}>();
+
+const localName = ref(props.firstname);
+const localSurname = ref(props.surname);
+
+watch(() => props.firstname, (newValue) => {
+  localName.value = newValue;
+});
+watch(() => props.surname, (newValue) => {
+  localSurname.value = newValue;
+});
+
+watch(localName, (newValue) => emit('update:name', newValue));
+watch(localSurname, (newValue) => emit('update:surname', newValue));
+
+</script>
+
 <template>
   <div class="flex flex-col" style="width: 95%; height: 95%">
     <div class="flex basis-1/2">
@@ -5,13 +38,13 @@
         <div class="basis-1/2 flex items-center">
           <div class="w-11/12">
             <label for="firstname">First Name</label>
-            <input id="firstname" class="w-full py-1 pl-3 mt-2 rounded-md" type="text" placeholder="First Name" />
+            <input id="firstname" class="w-full py-1 pl-3 mt-2 rounded-md" v-model="localName" type="text" placeholder="First Name" />
           </div>
         </div>
         <div class="basis-1/2 flex items-center">
           <div class="w-11/12">
             <label for="firstname">Last Name</label>
-            <input class="w-full py-1 pl-3 mt-2 rounded-md" type="text" placeholder="Last Name" />
+            <input class="w-full py-1 pl-3 mt-2 rounded-md" type="text" v-model="localSurname" placeholder="Last Name" />
           </div>
         </div>
       </div>

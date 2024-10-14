@@ -1,15 +1,22 @@
 <script setup lang="ts">
+import { ref } from 'vue';
+
 import EditUserData from '@/components/EditUserData.vue'
 import EditUserImage from '@/components/EditUserImage.vue'
+
+const name = ref("");
+const surname = ref("");
+const imageUrl = ref("");
+
 </script>
 
 <template>
   <div class="h-full md:h-3/5 w-100 flex flex-col-reverse md:flex-row justify-between">
     <div class="bg-white edit-user-data-wrapper flex justify-center items-center rounded-md">
-      <edit-user-data />
+      <edit-user-data v-model:firstname="name" v-model:surname="surname"  />
     </div>
     <div class="basis-5/12 edit-image-wrapper md:basis-4/12 flex justify-center items-center bg-white rounded-md">
-      <edit-user-image />
+      <edit-user-image v-model:pfp="imageUrl" />
     </div>
   </div>
 </template>
