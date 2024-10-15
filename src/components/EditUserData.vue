@@ -12,20 +12,19 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  id: undefined,
-  firstname: null,
-  surname: null,
+  firstname: '',
+  surname: '',
   variant: undefined,
 })
 
 const emit = defineEmits<{
-  (e: 'update:name', firstname: string): void
+  (e: 'update:firstname', firstname: string): void
   (e: 'update:surname', surname: string): void
-  (e: 'updateDetails'): void;
+  (e: 'updateDetails'): void
 }>()
 
 const handleClick = () => {
-  emit('updateDetails');
+  emit('updateDetails')
 }
 
 const localName = ref(props.firstname)
@@ -49,9 +48,10 @@ watch(localName, newValue => emit('update:firstname', newValue))
 watch(localSurname, newValue => emit('update:surname', newValue))
 
 const deleteUserWithRedirection = async () => {
-  const result = await deleteUser(props.id);
-  if (!result) return;
-  await router.push("/")
+  if (!props.id) return
+  const result = await deleteUser(props.id)
+  if (!result) return
+  await router.push('/')
 }
 const isVariant = (variant: Variants) => props.variant === variant
 </script>

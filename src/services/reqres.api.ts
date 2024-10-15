@@ -1,4 +1,4 @@
-export const getAllUsers = async (perPage, page) => {
+export const getAllUsers = async (perPage: number, page: number) => {
   try {
     const response = await fetch(
       `https://reqres.in/api/users?per_page=${perPage}&page=${page}`,

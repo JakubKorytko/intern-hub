@@ -13,7 +13,6 @@ const props = withDefaults(
     changePage: () => {},
   },
 )
-
 </script>
 
 <template>

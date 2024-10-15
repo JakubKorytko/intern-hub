@@ -4,7 +4,7 @@ import { defineProps } from 'vue'
 interface Props {
   text: string
   active: boolean
-  selectable: boolean,
+  selectable: boolean
   selectPage: () => void
 }
 
@@ -12,13 +12,16 @@ const props = withDefaults(defineProps<Props>(), {
   text: '',
   active: false,
   selectable: true,
-  selectPage: () => {}
+  selectPage: () => {},
 })
-
 </script>
 
 <template>
-  <button @click="selectPage" :class="{ selectable: props.selectable, active: props.active }" class="w-7 h-7 p-0">
+  <button
+    @click="selectPage"
+    :class="{ selectable: props.selectable, active: props.active }"
+    class="w-7 h-7 p-0"
+  >
     {{ props.text }}
   </button>
 </template>

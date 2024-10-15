@@ -1,9 +1,15 @@
 <template>
-  <div class="h-full md:h-3/5 w-100 flex flex-col-reverse md:flex-row justify-between">
-    <div class="bg-white edit-user-data-wrapper flex justify-center items-center rounded-md">
+  <div
+    class="h-full md:h-3/5 w-100 flex flex-col-reverse md:flex-row justify-between"
+  >
+    <div
+      class="bg-white edit-user-data-wrapper flex justify-center items-center rounded-md"
+    >
       <slot name="data"></slot>
     </div>
-    <div class="basis-5/12 edit-image-wrapper md:basis-4/12 flex justify-center items-center bg-white rounded-md">
+    <div
+      class="basis-5/12 edit-image-wrapper md:basis-4/12 flex justify-center items-center bg-white rounded-md"
+    >
       <slot name="image"></slot>
     </div>
   </div>

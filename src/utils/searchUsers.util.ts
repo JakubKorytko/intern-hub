@@ -1,4 +1,5 @@
 import { getAllUsers } from '@/services/reqres.api'
+import type { IUser } from '@/types/reqres.api.type'
 
 const getAllDataFromApi = async (data = [], iterPage = 1) => {
   const fetchedData = await getAllUsers(100, iterPage)
@@ -9,8 +10,7 @@ const getAllDataFromApi = async (data = [], iterPage = 1) => {
   return getAllDataFromApi(data_temp, iterPage + 1)
 }
 
-const searchUsers = (users, searchValue) => {
-
+const searchUsers = (users: IUser[], searchValue: string) => {
   const lowerSearchValue = searchValue.toLowerCase()
   const searchTerms = lowerSearchValue.split(' ')
 
@@ -20,17 +20,21 @@ const searchUsers = (users, searchValue) => {
   })
 }
 
-export const simulatePagesOnFilteredData = async (valueToFind="", page = 1, perPage = 5) => {
+export const simulatePagesOnFilteredData = async (
+  valueToFind = '',
+  page = 1,
+  perPage = 5,
+) => {
   try {
-    const allUsers = await getAllDataFromApi();
-    const filteredUsers = searchUsers(allUsers, valueToFind);
+    const allUsers = await getAllDataFromApi()
+    const filteredUsers = searchUsers(allUsers, valueToFind)
 
-    const total = filteredUsers.length;
-    const total_pages = Math.ceil(total / perPage);
+    const total = filteredUsers.length
+    const total_pages = Math.ceil(total / perPage)
 
-    const startIndex = (page - 1) * perPage;
-    const endIndex = startIndex + perPage;
-    const paginatedUsers = filteredUsers.slice(startIndex, endIndex);
+    const startIndex = (page - 1) * perPage
+    const endIndex = startIndex + perPage
+    const paginatedUsers = filteredUsers.slice(startIndex, endIndex)
 
     return {
       page,
@@ -38,15 +42,15 @@ export const simulatePagesOnFilteredData = async (valueToFind="", page = 1, perP
       total,
       total_pages,
       data: paginatedUsers,
-    };
+    }
   } catch (error) {
-    console.error(error);
+    console.error(error)
     return {
       page,
       per_page: 0,
       total: 0,
       total_pages: 0,
       data: [],
-    };
+    }
   }
-};
+}

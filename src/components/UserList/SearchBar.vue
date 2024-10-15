@@ -6,7 +6,7 @@ interface IProps {
 }
 
 const props = withDefaults(defineProps<IProps>(), {
-  modelValue: ""
+  modelValue: '',
 })
 
 const emit = defineEmits<{

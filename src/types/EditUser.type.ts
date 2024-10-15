@@ -1,4 +1,4 @@
 export enum Variants {
   AddUser,
-  EditUser
+  EditUser,
 }

@@ -17,17 +17,17 @@ const addUserHandler = () => {
   const errors = validateUserData(firstname.value, lastname.value, pfp.value)
 
   if (errors.length > 0) {
-    alert(`Pola nie zostaly wypelnione poprawnie:\n\n${errors.join('\n')}`);
-    return;
+    alert(`Pola nie zostaly wypelnione poprawnie:\n\n${errors.join('\n')}`)
+    return
   }
 
-  const result = createUser(firstname.value, lastname.value, pfp.value);
+  const result = createUser(firstname.value, lastname.value, pfp.value)
   if (!result) {
-    alert("Nie udalo sie dodac uzytkownika");
-    return;
+    alert('Nie udalo sie dodac uzytkownika')
+    return
   }
-  alert("Uzytkownik zostal dodany!");
-  router.push("/");
+  alert('Uzytkownik zostal dodany!')
+  router.push('/')
 }
 </script>
 

@@ -7,56 +7,62 @@ import EditUserWrapper from '@/components/EditUserWrapper.vue'
 import { Variants } from '@/types/EditUser.type'
 import { getUserById, updateUserById } from '@/services/reqres.api'
 import router from '@/router'
-import type { IUser } from '@/types/reqres.api.type'
 import { validateUserData } from '@/utils/manipulateUsers.util'
 
-const props = defineProps<{id: string}>();
-const user = ref<IUser>({});
-const userExists = ref(false);
+const props = defineProps<{ id: string }>()
+const userExists = ref(false)
 
-const localFirstName = ref("")
-const localLastname = ref("")
-const localPfp = ref("")
+const localFirstName = ref('')
+const localLastname = ref('')
+const localPfp = ref('')
 
 const fetchUser = async () => {
   try {
-    user.value = await getUserById(props.id);
-    if (!user.value || Object.keys(user.value).length === 0) {
-      alert("Uzytkownik nie istnieje!");
-      await router.push('/');
-      return;
+    const user = await getUserById(Number(props.id))
+    if (!user || user instanceof Error || Object.keys(user).length === 0) {
+      alert('Uzytkownik nie istnieje!')
+      await router.push('/')
+      return
     }
-    localFirstName.value = user.value.first_name;
-    localLastname.value = user.value.last_name;
-    localPfp.value = user.value.avatar;
-    userExists.value = true;
-    return;
+    localFirstName.value = user.first_name
+    localLastname.value = user.last_name
+    localPfp.value = user.avatar
+    userExists.value = true
+    return
   } catch (e) {
-    console.log(e);
+    console.log(e)
     await router.push('/')
-    return e;
+    return e
   }
 }
 
 const editUserHandler = () => {
-  const errors = validateUserData(localFirstName.value, localLastname.value, localPfp.value)
+  const errors = validateUserData(
+    localFirstName.value,
+    localLastname.value,
+    localPfp.value,
+  )
 
   if (errors.length > 0) {
-    alert(`Pola nie zostaly wypelnione poprawnie:\n\n${errors.join('\n')}`);
-    return;
+    alert(`Pola nie zostaly wypelnione poprawnie:\n\n${errors.join('\n')}`)
+    return
   }
 
-  const result = updateUserById(user.value.id, localFirstName.value, localLastname.value, localPfp.value);
+  const result = updateUserById(
+    Number(props.id),
+    localFirstName.value,
+    localLastname.value,
+    localPfp.value,
+  )
   if (!result) {
-    alert("Nie udalo sie dodac uzytkownika");
-    return;
+    alert('Nie udalo sie dodac uzytkownika')
+    return
   }
-  alert("Uzytkownik zostal zaktualizowany!");
-  router.push("/");
+  alert('Uzytkownik zostal zaktualizowany!')
+  router.push('/')
 }
 
 onBeforeMount(fetchUser)
-
 </script>
 
 <template>
@@ -64,7 +70,7 @@ onBeforeMount(fetchUser)
     <edit-user-wrapper>
       <template #data>
         <edit-user-data
-          :id="user.id"
+          :id="Number(props.id)"
           v-model:firstname="localFirstName"
           v-model:surname="localLastname"
           :variant="Variants.EditUser"

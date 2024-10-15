@@ -2,10 +2,7 @@
 import ListRow from '@/components/UserList/ListRow.vue'
 import type { IPage } from '@/types/reqres.api.type'
 
-const props = withDefaults(defineProps<{data: IPage}>(), {
-  data: {}
-})
-
+const props = defineProps<{ data: IPage }>()
 </script>
 
 <template>
@@ -19,9 +16,7 @@ const props = withDefaults(defineProps<{data: IPage}>(), {
     </thead>
     <tbody>
       <template v-for="User in props.data.data" :key="User.id">
-        <list-row
-          :user="User"
-        />
+        <list-row :user="User" />
       </template>
     </tbody>
   </table>

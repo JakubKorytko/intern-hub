@@ -4,9 +4,18 @@ import ListWrapper from '@/components/UserList/ListWrapper.vue'
 import { onMounted, ref } from 'vue'
 import { getAllUsers } from '@/services/reqres.api'
 import { simulatePagesOnFilteredData } from '@/utils/searchUsers.util'
+import type { IPage } from '@/types/reqres.api.type'
 
-const data = ref<IPage>({})
-const filteredData = ref<IPage>({})
+const emptyPageObject: IPage = {
+  page: 1,
+  per_page: 0,
+  total: 0,
+  total_pages: 0,
+  data: [],
+}
+
+const data = ref<IPage>(emptyPageObject)
+const filteredData = ref<IPage>(emptyPageObject)
 const currentPage = ref(1)
 const oldSearchValue = ref('')
 const searchValue = ref('')
@@ -16,9 +25,9 @@ const usersPerPage = 5
 const changePage = (page: number) => {
   const isSearchEmpty = searchValue.value === ''
 
-  if (isSearchEmpty && (page > data.value.total_pages || page < 1)) return;
+  if (isSearchEmpty && (page > data.value.total_pages || page < 1)) return
   if (!isSearchEmpty && (page > filteredData.value.total_pages || page < 1))
-    return;
+    return
 
   currentPage.value = page
   if (isSearchEmpty) fetchData()
@@ -35,7 +44,7 @@ const fetchFilteredData = async () =>
     usersPerPage,
   ))
 
-const updatePages = newValue => {
+const updatePages = (newValue: string) => {
   if (newValue === '' || oldSearchValue.value === '') {
     currentPage.value = 1
     fetchData()
@@ -56,7 +65,7 @@ onMounted(fetchData)
       <list-wrapper
         v-model="searchValue"
         @update:modelValue="updatePages"
-        :data="searchValue === '' ? data : filteredData"
+        :pages="searchValue === '' ? data : filteredData"
       />
     </div>
     <div
