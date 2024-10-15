@@ -61,13 +61,13 @@ onMounted(checkImage)
         alt="profile picture"
         v-if="imageExists"
         :src="localPfp"
-        class="w-2/6 rounded-full"
+        class="w-2/6 rounded-full pfp"
       />
       <img
         alt="profile picture"
         v-else
         :src="imgUrl"
-        class="w-2/6 rounded-full"
+        class="w-2/6 rounded-full pfp"
       />
     </div>
     <div class="basis-3/12 flex justify-center items-center">
@@ -92,5 +92,13 @@ onMounted(checkImage)
 .change-photo-button {
   color: #68737c;
   border: 1px solid #ced5da;
+}
+
+.pfp {
+  width: 10rem;
+  max-width: 10rem;
+  height: 10rem;
+  max-height: 10rem;
+  object-fit: cover;
 }
 </style>

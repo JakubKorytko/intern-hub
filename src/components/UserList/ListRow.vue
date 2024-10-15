@@ -13,7 +13,7 @@ const props = defineProps<Props>()
 <template>
   <tr>
     <td>
-      <img alt="profile picture" :src="props.user.avatar" />
+      <img alt="profile picture" class="pfp" :src="props.user.avatar" />
     </td>
     <td>
       {{ props.user.first_name.concat(' ', props.user.last_name) }}
@@ -44,5 +44,13 @@ const props = defineProps<Props>()
 
 .intern-icons button:first-child i {
   vertical-align: middle;
+}
+
+.pfp {
+  max-height: 2.5rem;
+  height: 2.5rem;
+  max-width: 2.5rem;
+  width: 2.5rem;
+  object-fit: cover;
 }
 </style>
