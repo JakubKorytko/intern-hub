@@ -5,23 +5,30 @@ import EditUserData from '@/components/EditUserData.vue'
 import EditUserImage from '@/components/EditUserImage.vue'
 import EditUserWrapper from '@/components/EditUserWrapper.vue'
 import { Variants } from '@/types/EditUser.type'
-import { getUserById } from '@/services/reqres.api'
+import { getUserById, updateUserById } from '@/services/reqres.api'
 import router from '@/router'
 import type { IUser } from '@/types/reqres.api.type'
+import { validateUserData } from '@/utils/manipulateUsers.util'
 
-const props = defineProps<{id: number}>();
+const props = defineProps<{id: string}>();
 const user = ref<IUser>({});
 const userExists = ref(false);
+
+const localFirstName = ref("")
+const localLastname = ref("")
+const localPfp = ref("")
 
 const fetchUser = async () => {
   try {
     user.value = await getUserById(props.id);
-    console.log(user.value)
     if (!user.value || Object.keys(user.value).length === 0) {
-      alert("Uzytkownik nie istnieje!"); // TODO: komponent fallback
+      alert("Uzytkownik nie istnieje!");
       await router.push('/');
       return;
     }
+    localFirstName.value = user.value.first_name;
+    localLastname.value = user.value.last_name;
+    localPfp.value = user.value.avatar;
     userExists.value = true;
     return;
   } catch (e) {
@@ -29,6 +36,23 @@ const fetchUser = async () => {
     await router.push('/')
     return e;
   }
+}
+
+const editUserHandler = () => {
+  const errors = validateUserData(localFirstName.value, localLastname.value, localPfp.value)
+
+  if (errors.length > 0) {
+    alert(`Pola nie zostaly wypelnione poprawnie:\n\n${errors.join('\n')}`);
+    return;
+  }
+
+  const result = updateUserById(user.value.id, localFirstName.value, localLastname.value, localPfp.value);
+  if (!result) {
+    alert("Nie udalo sie dodac uzytkownika");
+    return;
+  }
+  alert("Uzytkownik zostal zaktualizowany!");
+  router.push("/");
 }
 
 onBeforeMount(fetchUser)
@@ -41,13 +65,14 @@ onBeforeMount(fetchUser)
       <template #data>
         <edit-user-data
           :id="user.id"
-          v-model:firstname="user.first_name"
-          v-model:surname="user.last_name"
+          v-model:firstname="localFirstName"
+          v-model:surname="localLastname"
           :variant="Variants.EditUser"
+          @updateDetails="editUserHandler"
         />
       </template>
       <template #image>
-        <edit-user-image v-model:pfp="user.avatar" />
+        <edit-user-image v-model:pfp="localPfp" />
       </template>
     </edit-user-wrapper>
   </template>

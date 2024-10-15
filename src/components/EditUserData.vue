@@ -5,7 +5,7 @@ import { deleteUser } from '@/utils/manipulateUsers.util'
 import router from '@/router'
 
 interface IProps {
-  id: number
+  id?: number
   firstname: string
   surname: string
   variant: Variants
@@ -21,7 +21,12 @@ const props = withDefaults(defineProps<IProps>(), {
 const emit = defineEmits<{
   (e: 'update:name', firstname: string): void
   (e: 'update:surname', surname: string): void
+  (e: 'updateDetails'): void;
 }>()
+
+const handleClick = () => {
+  emit('updateDetails');
+}
 
 const localName = ref(props.firstname)
 const localSurname = ref(props.surname)
@@ -40,13 +45,13 @@ watch(
   },
 )
 
-watch(localName, newValue => emit('update:name', newValue))
+watch(localName, newValue => emit('update:firstname', newValue))
 watch(localSurname, newValue => emit('update:surname', newValue))
 
-const deleteUserWithRedirection = () => {
-  const result = deleteUser(props.id);
+const deleteUserWithRedirection = async () => {
+  const result = await deleteUser(props.id);
   if (!result) return;
-  router.push("/")
+  await router.push("/")
 }
 const isVariant = (variant: Variants) => props.variant === variant
 </script>
@@ -84,12 +89,14 @@ const isVariant = (variant: Variants) => props.variant === variant
       <button
         v-if="isVariant(Variants.AddUser)"
         class="edit-user-button text-white px-7 py-2 rounded-md"
+        @click="handleClick"
       >
         Add User
       </button>
       <button
         v-else-if="isVariant(Variants.EditUser)"
         class="edit-user-button text-white px-7 py-2 rounded-md"
+        @click="handleClick"
       >
         Update Details
       </button>
