@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
 import type { IUser } from '@/types/reqres.api.type'
+import { deleteUser } from '@/utils/manipulateUsers.util'
 
 interface Props {
   user: IUser
 }
 
 const props = defineProps<Props>()
+
 </script>
 
 <template>
@@ -19,12 +21,12 @@ const props = defineProps<Props>()
     </td>
     <td class="text-gray-400">
       <div class="flex justify-center intern-icons">
-        <button>
-          <RouterLink :to="`/editUser/${props.user.id}`">
-          <i class="fa fa-edit"></i>
-          </RouterLink>
-        </button>
-        <button>
+        <RouterLink :to="`/editUser/${props.user.id}`">
+          <button>
+            <i class="fa fa-edit"></i>
+          </button>
+        </RouterLink>
+        <button @click="deleteUser(props.user.id)">
           <i class="fa fa-trash"></i>
         </button>
       </div>

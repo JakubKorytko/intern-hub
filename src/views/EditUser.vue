@@ -40,6 +40,7 @@ onBeforeMount(fetchUser)
     <edit-user-wrapper>
       <template #data>
         <edit-user-data
+          :id="user.id"
           v-model:firstname="user.first_name"
           v-model:surname="user.last_name"
           :variant="Variants.EditUser"

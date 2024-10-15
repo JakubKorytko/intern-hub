@@ -1,14 +1,18 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, ref, watch } from 'vue'
 import { Variants } from '@/types/EditUser.type'
+import { deleteUser } from '@/utils/manipulateUsers.util'
+import router from '@/router'
 
 interface IProps {
+  id: number
   firstname: string
   surname: string
   variant: Variants
 }
 
 const props = withDefaults(defineProps<IProps>(), {
+  id: undefined,
   firstname: null,
   surname: null,
   variant: undefined,
@@ -39,6 +43,11 @@ watch(
 watch(localName, newValue => emit('update:name', newValue))
 watch(localSurname, newValue => emit('update:surname', newValue))
 
+const deleteUserWithRedirection = () => {
+  const result = deleteUser(props.id);
+  if (!result) return;
+  router.push("/")
+}
 const isVariant = (variant: Variants) => props.variant === variant
 </script>
 
@@ -86,6 +95,7 @@ const isVariant = (variant: Variants) => props.variant === variant
       </button>
       <button
         v-if="isVariant(Variants.EditUser)"
+        @click="deleteUserWithRedirection"
         class="delete-user-button text-white px-7 py-2 rounded-md"
       >
         Delete User

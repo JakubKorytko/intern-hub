@@ -31,3 +31,21 @@ export const getUserById = async (id: string) => {
     return err;
   }
 }
+
+export const deleteUserById = async (id: string) => {
+  try {
+    const response = await fetch(`https://reqres.in/api/users/${id}`, {
+      method: 'DELETE',
+    });
+
+    if (!response.ok) {
+      throw new Error(`Error: ${response.status} ${response.statusText}`);
+    }
+
+    return response.status === 204;
+  } catch (err) {
+    console.error(err instanceof Error ? err.message : 'Nieznany blad');
+    return err;
+  }
+}
+
