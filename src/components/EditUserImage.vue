@@ -16,8 +16,13 @@ const emit = defineEmits<{
   (e: 'update:pfp', pfp: string): void
 }>()
 
+const inputInvisible = ref(true)
 const localPfp = ref(props.pfp)
 const imageExists = ref(false)
+
+const toggleInputVisibility = () => {
+  inputInvisible.value = !inputInvisible.value
+}
 
 watch(
   () => props.pfp,
@@ -75,13 +80,21 @@ onMounted(checkImage)
         <input
           type="text"
           class="w-full h-2/6 border-t-2"
+          :class="{ invisible: inputInvisible }"
           v-model="localPfp"
           @blur="checkImage"
           @change="checkImage"
+          placeholder="Input image link..."
         />
-        <button class="change-photo-button bg-white w-full h-4/6 rounded-md">
-          <i class="fa fa-camera" aria-hidden="true"></i>
-          Change Photo
+        <button
+          class="change-photo-button bg-white w-full h-4/6 rounded-md"
+          @click="toggleInputVisibility"
+        >
+          <template v-if="inputInvisible">
+            <i class="fa fa-camera" aria-hidden="true"></i>
+            Change Photo
+          </template>
+          <template v-else> Confirm </template>
         </button>
       </div>
     </div>
