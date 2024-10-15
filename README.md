@@ -1,7 +1,14 @@
 # InternHub
 
 A frontend for an internship management application.
-The application is currently under development, but the goal is to be able to perform CRUD operations on the provided API.
+This application allows to perform CRUD operations on the provided API.
+Check out the [demo](https://jakubkorytko.github.io/intern-hub/)
+
+## Important notes
+
+- This application was made using:
+  - Corepack version of yarn v4.5.0
+  - Node v20.17.0
 
 ## Project Setup
 
