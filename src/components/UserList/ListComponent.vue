@@ -20,8 +20,7 @@ const props = withDefaults(defineProps<{data: IPage}>(), {
     <tbody>
       <template v-for="User in props.data.data" :key="User.id">
         <list-row
-          :image-url="User.avatar"
-          :name="User.first_name.concat(' ', User.last_name)"
+          :user="User"
         />
       </template>
     </tbody>

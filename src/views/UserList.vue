@@ -2,7 +2,7 @@
 import PaginationBlock from '@/components/UserList/PaginationBlock.vue'
 import ListWrapper from '@/components/UserList/ListWrapper.vue'
 import { onMounted, ref } from 'vue'
-import { fetchApi } from '@/services/reqres.api'
+import { getAllUsers } from '@/services/reqres.api'
 import { simulatePagesOnFilteredData } from '@/utils/searchUsers.util'
 
 const data = ref<IPage>({})
@@ -26,7 +26,7 @@ const changePage = (page: number) => {
 }
 
 const fetchData = async () =>
-  (data.value = await fetchApi(usersPerPage, currentPage.value))
+  (data.value = await getAllUsers(usersPerPage, currentPage.value))
 
 const fetchFilteredData = async () =>
   (filteredData.value = await simulatePagesOnFilteredData(

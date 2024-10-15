@@ -1,36 +1,53 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onBeforeMount, ref } from 'vue'
 
 import EditUserData from '@/components/EditUserData.vue'
 import EditUserImage from '@/components/EditUserImage.vue'
 import EditUserWrapper from '@/components/EditUserWrapper.vue'
 import { Variants } from '@/types/EditUser.type'
+import { getUserById } from '@/services/reqres.api'
+import router from '@/router'
+import type { IUser } from '@/types/reqres.api.type'
 
-const imgUrl =
-  'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
+const props = defineProps<{id: number}>();
+const user = ref<IUser>({});
+const userExists = ref(false);
 
-const testData = {
-  name: "Jan",
-  surname: "Kowalski",
-  pfp: imgUrl
+const fetchUser = async () => {
+  try {
+    user.value = await getUserById(props.id);
+    console.log(user.value)
+    if (!user.value || Object.keys(user.value).length === 0) {
+      alert("Uzytkownik nie istnieje!"); // TODO: komponent fallback
+      await router.push('/');
+      return;
+    }
+    userExists.value = true;
+    return;
+  } catch (e) {
+    console.log(e);
+    await router.push('/')
+    return e;
+  }
 }
 
-const name = ref(testData.name)
-const surname = ref(testData.surname)
-const imageUrl = ref(testData.pfp)
+onBeforeMount(fetchUser)
+
 </script>
 
 <template>
-  <edit-user-wrapper>
-    <template #data>
-      <edit-user-data
-        v-model:firstname="name"
-        v-model:surname="surname"
-        :variant="Variants.EditUser"
-      />
-    </template>
-    <template #image>
-      <edit-user-image v-model:pfp="imageUrl" />
-    </template>
-  </edit-user-wrapper>
+  <template v-if="userExists">
+    <edit-user-wrapper>
+      <template #data>
+        <edit-user-data
+          v-model:firstname="user.first_name"
+          v-model:surname="user.last_name"
+          :variant="Variants.EditUser"
+        />
+      </template>
+      <template #image>
+        <edit-user-image v-model:pfp="user.avatar" />
+      </template>
+    </edit-user-wrapper>
+  </template>
 </template>

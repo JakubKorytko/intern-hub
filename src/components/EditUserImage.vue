@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, watch } from 'vue';
+import { ref, defineProps, defineEmits, watch, onMounted } from 'vue'
 
 const imgUrl =
   'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
@@ -47,6 +47,8 @@ async function checkImage() {
     imageExists.value = false;
   }
 }
+
+onMounted(checkImage);
 </script>
 
 <template>

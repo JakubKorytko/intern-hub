@@ -1,27 +1,28 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
+import type { IUser } from '@/types/reqres.api.type'
 
 interface Props {
-  imageUrl: string
-  name: string
+  user: IUser
 }
 
 const props = defineProps<Props>()
-const { imageUrl, name } = props
 </script>
 
 <template>
   <tr>
     <td>
-      <img alt="profile picture" :src="imageUrl" />
+      <img alt="profile picture" :src="props.user.avatar" />
     </td>
     <td>
-      {{ name }}
+      {{ props.user.first_name.concat(' ', props.user.last_name) }}
     </td>
     <td class="text-gray-400">
       <div class="flex justify-center intern-icons">
         <button>
+          <RouterLink :to="`/editUser/${props.user.id}`">
           <i class="fa fa-edit"></i>
+          </RouterLink>
         </button>
         <button>
           <i class="fa fa-trash"></i>

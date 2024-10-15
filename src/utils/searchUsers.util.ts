@@ -1,7 +1,7 @@
-import { fetchApi } from '@/services/reqres.api'
+import { getAllUsers } from '@/services/reqres.api'
 
 const getAllDataFromApi = async (data = [], iterPage = 1) => {
-  const fetchedData = await fetchApi(100, iterPage)
+  const fetchedData = await getAllUsers(100, iterPage)
   const data_temp = data.concat(fetchedData.data)
   if (fetchedData.total_pages - fetchedData.page <= 0) {
     return data_temp

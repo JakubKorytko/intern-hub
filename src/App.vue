@@ -3,8 +3,9 @@ import { RouterView, useRouter } from 'vue-router'
 import { watch, ref } from 'vue'
 
 const routeHeader: Record<string, string> = {
-  "/": 'User List',
-  "/addUser": 'Add User',
+  "home": 'User List',
+  "addUser": 'Add User',
+  "editUser": 'Edit User',
 }
 
 const getCurrentPageName = (routeName: string) => {
@@ -13,9 +14,9 @@ const getCurrentPageName = (routeName: string) => {
 }
 
 const router = useRouter();
-const currentPageName = ref(getCurrentPageName(router.currentRoute.value.path));
+const currentPageName = ref(getCurrentPageName(router.currentRoute.value.name));
 
-watch(() => router.currentRoute.value.path, (newPath) => {
+watch(() => router.currentRoute.value.name, (newPath) => {
   currentPageName.value = getCurrentPageName(newPath);
 })
 
