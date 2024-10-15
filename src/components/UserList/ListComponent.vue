@@ -1,24 +1,11 @@
 <script setup lang="ts">
 import ListRow from '@/components/UserList/ListRow.vue'
+import type { IPage } from '@/types/api'
 
-const imgUrl =
-  'https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png'
-
-interface Intern {
-  id: number
-  firstname: string
-  surname: string
-  pfp: string
-}
-
-let i = 0
-
-const Interns: Intern[] = new Array(10).fill({
-  id: i++,
-  firstname: 'Jan',
-  surname: 'Kowalski',
-  pfp: imgUrl,
+const props = withDefaults(defineProps<{data: IPage}>(), {
+  data: {}
 })
+
 </script>
 
 <template>
@@ -31,10 +18,10 @@ const Interns: Intern[] = new Array(10).fill({
       </tr>
     </thead>
     <tbody>
-      <template v-for="Intern in Interns" :key="Intern.id">
+      <template v-for="User in props.data.data" :key="User.id">
         <list-row
-          :image-url="Intern.pfp"
-          :name="Intern.firstname.concat(' ', Intern.surname)"
+          :image-url="User.avatar"
+          :name="User.first_name.concat(' ', User.last_name)"
         />
       </template>
     </tbody>

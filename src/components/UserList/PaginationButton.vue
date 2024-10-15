@@ -4,21 +4,22 @@ import { defineProps } from 'vue'
 interface Props {
   text: string
   active: boolean
-  selectable: boolean
+  selectable: boolean,
+  selectPage: () => void
 }
 
 const props = withDefaults(defineProps<Props>(), {
   text: '',
   active: false,
   selectable: true,
+  selectPage: () => {}
 })
 
-const { text, selectable, active } = props
 </script>
 
 <template>
-  <button :class="{ selectable, active }" class="w-7 h-7 p-0">
-    {{ text }}
+  <button @click="selectPage" :class="{ selectable: props.selectable, active: props.active }" class="w-7 h-7 p-0">
+    {{ props.text }}
   </button>
 </template>
 
