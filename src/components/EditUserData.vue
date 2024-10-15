@@ -1,34 +1,45 @@
 <script setup lang="ts">
-import { ref, defineProps, defineEmits, watch } from 'vue';
+import { defineEmits, defineProps, ref, watch } from 'vue'
+import { Variants } from '@/components/EditUser.type'
 
 interface IProps {
-  firstname: string;
-  surname: string;
+  firstname: string
+  surname: string
+  variant: Variants
 }
 
 const props = withDefaults(defineProps<IProps>(), {
   firstname: null,
   surname: null,
+  variant: undefined,
 })
 
 const emit = defineEmits<{
-  (e: 'update:name', firstname: string): void;
-  (e: 'update:surname', surname: string): void;
-}>();
+  (e: 'update:name', firstname: string): void
+  (e: 'update:surname', surname: string): void
+}>()
 
-const localName = ref(props.firstname);
-const localSurname = ref(props.surname);
+const localName = ref(props.firstname)
+const localSurname = ref(props.surname)
 
-watch(() => props.firstname, (newValue) => {
-  localName.value = newValue;
-});
-watch(() => props.surname, (newValue) => {
-  localSurname.value = newValue;
-});
+watch(
+  () => props.firstname,
+  newValue => {
+    localName.value = newValue
+  },
+)
 
-watch(localName, (newValue) => emit('update:name', newValue));
-watch(localSurname, (newValue) => emit('update:surname', newValue));
+watch(
+  () => props.surname,
+  newValue => {
+    localSurname.value = newValue
+  },
+)
 
+watch(localName, newValue => emit('update:name', newValue))
+watch(localSurname, newValue => emit('update:surname', newValue))
+
+const isVariant = (variant: Variants) => props.variant === variant
 </script>
 
 <template>
@@ -38,19 +49,47 @@ watch(localSurname, (newValue) => emit('update:surname', newValue));
         <div class="basis-1/2 flex items-center">
           <div class="w-11/12">
             <label for="firstname">First Name</label>
-            <input id="firstname" class="w-full py-1 pl-3 mt-2 rounded-md" v-model="localName" type="text" placeholder="First Name" />
+            <input
+              id="firstname"
+              class="w-full py-1 pl-3 mt-2 rounded-md"
+              v-model="localName"
+              type="text"
+              placeholder="First Name"
+            />
           </div>
         </div>
         <div class="basis-1/2 flex items-center">
           <div class="w-11/12">
             <label for="firstname">Last Name</label>
-            <input class="w-full py-1 pl-3 mt-2 rounded-md" type="text" v-model="localSurname" placeholder="Last Name" />
+            <input
+              class="w-full py-1 pl-3 mt-2 rounded-md"
+              type="text"
+              v-model="localSurname"
+              placeholder="Last Name"
+            />
           </div>
         </div>
       </div>
     </div>
     <div class="flex basis-1/2 items-end">
-      <button class="add-user-button text-white px-7 py-2 rounded-md">Add User</button>
+      <button
+        v-if="isVariant(Variants.AddUser)"
+        class="edit-user-button text-white px-7 py-2 rounded-md"
+      >
+        Add User
+      </button>
+      <button
+        v-else-if="isVariant(Variants.EditUser)"
+        class="edit-user-button text-white px-7 py-2 rounded-md"
+      >
+        Update Details
+      </button>
+      <button
+        v-if="isVariant(Variants.EditUser)"
+        class="delete-user-button text-white px-7 py-2 rounded-md"
+      >
+        Delete User
+      </button>
     </div>
   </div>
 </template>
@@ -60,8 +99,14 @@ input {
   border: 1px solid #ced5da;
 }
 
-.add-user-button {
+.edit-user-button {
   background-color: #1e9067;
-  font-size: 0.9rem
+  font-size: 0.9rem;
+}
+
+.delete-user-button {
+  background-color: #cf4242;
+  margin-left: 0.4rem;
+  font-size: 0.9rem;
 }
 </style>
