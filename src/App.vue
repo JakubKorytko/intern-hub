@@ -32,7 +32,7 @@ watch(
       <div class="basis-1/12">
         <h1 class="text-4xl">{{ currentPageName }}</h1>
       </div>
-      <div class="content-wrapper overflow-hidden basis-11/12">
+      <div class="content-wrapper basis-11/12">
         <RouterView />
       </div>
     </div>

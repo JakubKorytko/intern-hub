@@ -59,9 +59,9 @@ const isVariant = (variant: Variants) => props.variant === variant
 <template>
   <div class="flex flex-col" style="width: 95%; height: 95%">
     <div class="flex basis-1/2">
-      <div class="flex flex-row w-full h-full">
+      <div class="flex flex-col lg:flex-row w-full h-full">
         <div class="basis-1/2 flex items-center">
-          <div class="w-11/12">
+          <div class="w-full lg:w-11/12">
             <label for="firstname">First Name</label>
             <input
               id="firstname"
@@ -73,7 +73,7 @@ const isVariant = (variant: Variants) => props.variant === variant
           </div>
         </div>
         <div class="basis-1/2 flex items-center">
-          <div class="w-11/12">
+          <div class="w-full lg:w-11/12">
             <label for="firstname">Last Name</label>
             <input
               class="w-full py-1 pl-3 mt-2 rounded-md"
@@ -85,7 +85,9 @@ const isVariant = (variant: Variants) => props.variant === variant
         </div>
       </div>
     </div>
-    <div class="flex basis-1/2 items-end">
+    <div
+      class="flex basis-1/2 lg:items-end flex-col justify-evenly items-center lg:flex-row lg:justify-normal"
+    >
       <button
         v-if="isVariant(Variants.AddUser)"
         class="edit-user-button text-white px-7 py-2 rounded-md"
@@ -125,5 +127,16 @@ input {
   background-color: #cf4242;
   margin-left: 0.4rem;
   font-size: 0.9rem;
+}
+
+@media (max-width: 1024px) {
+  .delete-user-button {
+    margin-left: 0;
+  }
+
+  .edit-user-button,
+  .delete-user-button {
+    width: 80%;
+  }
 }
 </style>

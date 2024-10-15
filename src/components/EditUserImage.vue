@@ -61,7 +61,7 @@ onMounted(checkImage)
 
 <template>
   <div class="flex flex-col" style="width: 95%; height: 95%">
-    <div class="basis-9/12 flex justify-center items-center">
+    <div class="basis-7/12 lg:basis-9/12 flex justify-center items-center">
       <img
         alt="profile picture"
         v-if="imageExists"
@@ -75,8 +75,8 @@ onMounted(checkImage)
         class="w-2/6 rounded-full pfp"
       />
     </div>
-    <div class="basis-3/12 flex justify-center items-center">
-      <div class="w-11/12 h-4/6">
+    <div class="basis-5/12 lg:basis-3/12 flex justify-center items-center">
+      <div class="w-11/12 h-5/6 lg:h-4/6">
         <input
           type="text"
           class="w-full h-2/6 border-t-2"
@@ -87,7 +87,7 @@ onMounted(checkImage)
           placeholder="Input image link..."
         />
         <button
-          class="change-photo-button bg-white w-full h-4/6 rounded-md"
+          class="change-photo-button bg-white w-full h-3/6 rounded-md"
           @click="toggleInputVisibility"
         >
           <template v-if="inputInvisible">
@@ -105,6 +105,12 @@ onMounted(checkImage)
 .change-photo-button {
   color: #68737c;
   border: 1px solid #ced5da;
+}
+
+@media (max-width: 1024px) {
+  .change-photo-button {
+    margin-top: 2%;
+  }
 }
 
 .pfp {
