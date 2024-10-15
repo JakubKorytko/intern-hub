@@ -4,7 +4,7 @@ import { ref } from 'vue'
 import EditUserData from '@/components/EditUserData.vue'
 import EditUserImage from '@/components/EditUserImage.vue'
 import EditUserWrapper from '@/components/EditUserWrapper.vue'
-import { Variants } from '@/components/EditUser.type'
+import { Variants } from '@/types/EditUser.type'
 
 const name = ref('')
 const surname = ref('')

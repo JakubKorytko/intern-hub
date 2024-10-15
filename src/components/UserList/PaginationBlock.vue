@@ -28,18 +28,27 @@ const props = withDefaults(
       :active="false"
       text="«"
     />
-    <template v-for="page in props.pages" :key="page">
-      <pagination-button
-        :active="page === props.currentPage"
-        :selectable="page !== props.currentPage"
-        :text="String(page)"
-        :selectPage="
-          () => {
-            props.changePage(page)
-          }
-        "
-      />
+    <template v-if="props.pages !== 0">
+      <template v-for="page in props.pages" :key="page">
+        <pagination-button
+          :active="page === props.currentPage"
+          :selectable="page !== props.currentPage"
+          :text="String(page)"
+          :selectPage="
+            () => {
+              props.changePage(page)
+            }
+          "
+        />
+      </template>
     </template>
+    <pagination-button
+      v-else
+      :active="true"
+      :selectable="false"
+      :text="String(1)"
+      :selectPage="() => {}"
+    />
     <pagination-button
       :active="false"
       :selectPage="

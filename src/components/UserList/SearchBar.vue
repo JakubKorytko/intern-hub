@@ -1,6 +1,34 @@
+<script setup lang="ts">
+import { defineEmits, defineProps, ref, watch } from 'vue'
+
+interface IProps {
+  modelValue: string
+}
+
+const props = withDefaults(defineProps<IProps>(), {
+  modelValue: ""
+})
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
+
+const localValue = ref(props.modelValue)
+
+watch(
+  () => props.modelValue,
+  newValue => {
+    localValue.value = newValue
+  },
+)
+
+watch(localValue, newValue => emit('update:modelValue', newValue))
+</script>
+
 <template>
   <div class="h-12 w-full md:w-96">
     <input
+      v-model="localValue"
       type="text"
       placeholder="Search for users..."
       class="h-full md:h-4/6 search-bar float-left"

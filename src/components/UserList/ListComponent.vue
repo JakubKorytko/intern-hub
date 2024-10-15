@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import ListRow from '@/components/UserList/ListRow.vue'
-import type { IPage } from '@/types/api'
+import type { IPage } from '@/types/reqres.api.type'
 
 const props = withDefaults(defineProps<{data: IPage}>(), {
   data: {}

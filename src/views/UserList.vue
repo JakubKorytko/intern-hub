@@ -1,37 +1,51 @@
 <script setup lang="ts">
 import PaginationBlock from '@/components/UserList/PaginationBlock.vue'
 import ListWrapper from '@/components/UserList/ListWrapper.vue'
-import { ref, onMounted } from 'vue';
+import { onMounted, ref } from 'vue'
+import { fetchApi } from '@/services/reqres.api'
+import { simulatePagesOnFilteredData } from '@/utils/searchUsers.util'
 
-const data = ref<IPage>({});
-const error = ref<string | null>(null);
-const currentPage = ref(1);
-const usersPerPage = 5;
+const data = ref<IPage>({})
+const filteredData = ref<IPage>({})
+const currentPage = ref(1)
+const oldSearchValue = ref('')
+const searchValue = ref('')
+
+const usersPerPage = 5
 
 const changePage = (page: number) => {
-  if (page > data.value.total_pages || page < data.value.pages) {
+  const isSearchEmpty = searchValue.value === ''
+
+  if (isSearchEmpty && (page > data.value.total_pages || page < 1)) return;
+  if (!isSearchEmpty && (page > filteredData.value.total_pages || page < 1))
     return;
-  }
-  currentPage.value = page;
-  fetchData();
-  console.log(page);
+
+  currentPage.value = page
+  if (isSearchEmpty) fetchData()
+  else fetchFilteredData()
 }
 
-const fetchData = async () => {
-  try {
-    const response = await fetch(`https://reqres.in/api/users?per_page=${usersPerPage}&page=${currentPage.value}`);
+const fetchData = async () =>
+  (data.value = await fetchApi(usersPerPage, currentPage.value))
 
-    if (!response.ok) {
-      throw new Error(`Error: ${response.status} ${response.statusText}`);
-    }
+const fetchFilteredData = async () =>
+  (filteredData.value = await simulatePagesOnFilteredData(
+    searchValue.value,
+    currentPage.value,
+    usersPerPage,
+  ))
 
-    data.value = await response.json();
-  } catch (err) {
-    error.value = err instanceof Error ? err.message : 'Nieznany blad';
+const updatePages = newValue => {
+  if (newValue === '' || oldSearchValue.value === '') {
+    currentPage.value = 1
+    fetchData()
+  } else {
+    fetchFilteredData()
   }
+  oldSearchValue.value = newValue
 }
 
-onMounted(fetchData);
+onMounted(fetchData)
 </script>
 
 <template>
@@ -39,12 +53,27 @@ onMounted(fetchData);
     <div
       class="list-wrapper-bg justify-center flex items-center overflow-hidden bg-white"
     >
-      <list-wrapper :data="data" />
+      <list-wrapper
+        v-model="searchValue"
+        @update:modelValue="updatePages"
+        :data="searchValue === '' ? data : filteredData"
+      />
     </div>
     <div
       class="pagination-block-wrapper flex items-center justify-center md:justify-normal"
     >
-      <pagination-block :currentPage="currentPage" :pages="data.total_pages" :changePage="changePage" />
+      <pagination-block
+        v-if="searchValue === ''"
+        :currentPage="currentPage"
+        :pages="data.total_pages"
+        :changePage="changePage"
+      />
+      <pagination-block
+        v-else
+        :currentPage="currentPage"
+        :pages="filteredData.total_pages"
+        :changePage="changePage"
+      />
     </div>
   </div>
 </template>

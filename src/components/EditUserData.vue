@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineEmits, defineProps, ref, watch } from 'vue'
-import { Variants } from '@/components/EditUser.type'
+import { Variants } from '@/types/EditUser.type'
 
 interface IProps {
   firstname: string
